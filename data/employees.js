@@ -35,7 +35,31 @@ let exportedMethods = {
                 return this.getEmployeeById(newId);
             })
         });
-
+    },
+    updateEmployee(id, updatedEmployee) {
+        return employees().then((employeeCollection) => {
+            let updatedEmployeeInfo = {
+                firstName: updatedEmployee.firstName,
+                lastName: updatedEmployee.lastName,
+                title: updatedEmployee.title,
+                hireDate: updatedEmployee.hireDate
+            };
+            return employeeCollection.updateOne({_id: id},{
+                $set:updatedEmployeeInfo
+            }).then(() => {
+                console.log(this);
+                return this.getEmployeeById(id);  
+            }); 
+        });
+    },
+    removeEmployee(id) {
+        return employees().then((employeeCollection) => {
+            return employeeCollection.removeOne({_id: id}).then((deletedInfo) => {
+                if(deletedInfo.deletedCount === 0){
+                    throw(`Could not delete user with id ${id}`);
+                }
+            });
+        });
     }
 }
 

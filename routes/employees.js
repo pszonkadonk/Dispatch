@@ -22,14 +22,9 @@ const employees = data.employees;
 router.get('/', (req,res) => {
     employees.getAllEmployees().then((emps) =>{
         res.send(emps);
-    })
-})
-
-router.get('/:id', (req,res) => {
-    employees.getEmployeeById(req.params.id).then((employee) =>{
-        res.json(employee);
     });
 });
+
 
 router.post('/', (req,res) =>{
     let reqInfo = req.body
@@ -41,6 +36,28 @@ router.post('/', (req,res) =>{
             res.json(employee);
         });
 });
+
+
+router.get('/:id', (req,res) => {
+    employees.getEmployeeById(req.params.id).then((employee) =>{
+        res.json(employee);
+    });
+});
+
+router.put('/:id', (req,res) => {
+    let employee = req.body;
+    employees.updateEmployee(req.params.id, employee).then((foo) => {
+        res.json(foo);
+    });
+});
+
+router.delete('/:id', (req,res) => {
+    employees.removeEmployee(req.params.id).then(() => {
+        res.send("deleted user");
+    });
+});
+
+
 
 
 module.exports = router;
