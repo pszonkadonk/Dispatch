@@ -6,8 +6,8 @@ const trucks = data.trucks;
 
 
 router.get('/', (req,res) => {
-    trucks.getAllTrucks().then((truck) =>{
-        res.send(truck);
+    trucks.getAllTrucks().then((trk) =>{
+        res.send(trk);
     });
 });
 
