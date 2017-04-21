@@ -4,21 +4,6 @@ const data = require('../data');
 const employees = data.employees;
 
 
-// let employees = [
-//         {
-//             id: "123",
-//             name: "Michael",
-//             title: "Software Engineer",
-//             hireDate: "5/15/2017"
-//         },
-        // {
-        //     id: "456",
-        //     name: "Richard",
-        //     title: "Nurse",
-        //     hireDate: "1/15/2016"
-        // }
-//     ]
-
 router.get('/', (req,res) => {
     employees.getAllEmployees().then((emps) =>{
         res.send(emps);
