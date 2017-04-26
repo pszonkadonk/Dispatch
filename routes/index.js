@@ -9,7 +9,7 @@ const constructorMethod = (app) => {
     app.use('/employees', employeeRoutes);
     app.use('/trucks', truckRoutes);
     app.use('/customers', customerRoutes);
-    app.use('/station', stationRoutes);
+    app.use('/stations', stationRoutes);
     
     app.get('/login', (req,res) => {
         res.render('utilities/login');

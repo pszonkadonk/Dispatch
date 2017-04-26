@@ -6,7 +6,7 @@ const customers = data.customers;
 
 router.get('/', (req,res) => {
     customers.getAllCustomers().then((customs) =>{
-        res.send(custom);
+        res.send(customs);
     });
 });
 
