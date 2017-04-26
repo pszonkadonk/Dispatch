@@ -5,8 +5,11 @@ const customers = data.customers;
 
 
 router.get('/', (req,res) => {
-    customers.getAllCustomers().then((customs) =>{
-        res.send(customs);
+    customers.getAllCustomers().then((allCustomers) =>{
+        res.send(allCustomers);
+    })
+    .catch((err) => {
+        res.send(err);
     });
 });
 
@@ -21,27 +24,39 @@ router.post('/', (req,res) =>{
         reqInfo.contactNumber,
         reqInfo.contactEmail,
         reqInfo.stationList).then((customer)=> {
-            res.json(customer);
+            res.send(customer);
+        })
+        .catch((err) => {
+            console.log(err);
         });
 });
 
 
 router.get('/:id', (req,res) => {
     customers.getCustomerById(req.params.id).then((customer) =>{
-        res.json(customer);
+        res.send(customer);
+    })
+    .catch((err) => {
+        res.send(err);
     });
 });
 
 router.put('/:id', (req,res) => {
     let customer = req.body;
-    customers.updateCustomer(req.params.id, customer).then((foo) => {
-        res.json(foo);
+    customers.updateCustomer(req.params.id, customer).then((updatedCustomer) => {
+        res.send(updatedCustomer);
+    })
+    .catch((err) => {
+        res.send(err);
     });
 });
 
 router.delete('/:id', (req,res) => {
     customers.removeCustomer(req.params.id).then(() => {
         res.send("deleted customer");
+    })
+    .catch((err) => {
+        res.send(err);
     });
 });
 
